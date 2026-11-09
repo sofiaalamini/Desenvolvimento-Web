@@ -1,0 +1,86 @@
+/* hero escuro: texto à esquerda, foto à direita */
+.hero-wrapper {
+  background: var(--secondary-color);
+  padding-bottom: 4rem;
+  border-bottom-left-radius: 3rem;
+  border-bottom-right-radius: 3rem;
+}
+
+#hero {
+  padding-top: 3rem;
+}
+
+.hero-grid {
+  display: grid;
+  gap: 3rem;
+  align-items: center;
+}
+
+#hero .content {
+  display: grid;
+  gap: 1.25rem;
+  justify-items: start;
+}
+
+#hero .tag {
+  color: var(--accent-soft);
+}
+
+#hero h1 {
+  color: var(--light-text-color);
+}
+
+#hero .content > p:nth-child(3) {
+  color: #d9c7b3;
+  max-width: 32rem;
+}
+
+#hero .flex {
+  flex-direction: column;
+  width: 100%;
+}
+
+#hero .btn-secondary {
+  color: var(--light-text-color);
+  border-color: var(--light-text-color);
+}
+
+#hero .btn-secondary:hover {
+  background: var(--light-text-color);
+  color: var(--secondary-color);
+}
+
+/* foto com um bloco colorido deslocado atrás */
+.hero-photo {
+  position: relative;
+  justify-self: center;
+  width: min(100%, 32rem);
+}
+
+.hero-photo::before {
+  content: "";
+  position: absolute;
+  inset: 1.25rem -1.25rem -1.25rem 1.25rem;
+  background: var(--primary-color);
+  border-radius: 2rem;
+}
+
+.hero-photo img {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 2rem;
+}
+
+@media (width >= 580px) {
+  #hero .flex { flex-direction: row; width: auto; }
+  #hero .btn-primary,
+  #hero .btn-secondary { width: auto; }
+}
+
+@media (width >= 1280px) {
+  .hero-wrapper { padding-bottom: 6rem; }
+  #hero { padding-top: 5rem; }
+  .hero-grid { grid-template-columns: 1fr 1fr; gap: 4rem; }
+}

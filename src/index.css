@@ -1,0 +1,97 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+:root {
+  --primary-color: #d9582b;
+  --secondary-color: #2b1b14;
+  --bg-color: #fffaf3;
+  --card-color: #f8efe2;
+  --accent-soft: #f4cf9a;
+  --text-color: #2b1b14;
+  --second-text-color: #7a6455;
+  --highlight-color: #e8a33d;
+  --light-text-color: #ffffff;
+
+  --ff-title: "Fraunces", serif;
+  --ff-sans: "Nunito", system-ui, sans-serif;
+  --fw-base: 400;
+  --fw-bold: 800;
+
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: 1.75rem;
+  --fs-2xl: 2.25rem;
+
+  --py-sm: 0.875rem;
+  --py-xl: 3rem;
+  --px-lg: 1.5rem;
+}
+
+html {
+  font-family: var(--ff-sans);
+  font-weight: var(--fw-base);
+  font-size: var(--fs-base);
+  line-height: 1.6;
+  color: var(--text-color);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-color);
+  overflow-x: hidden;
+}
+
+button {
+  font: inherit;
+}
+
+h1, h2, h3 {
+  font-family: var(--ff-title);
+  line-height: 1.2;
+  font-weight: var(--fw-bold);
+}
+
+h1 { font-size: var(--fs-2xl); }
+h2 { font-size: var(--fs-xl); }
+h3 { font-size: var(--fs-lg); }
+
+a {
+  text-decoration: none;
+  color: var(--second-text-color);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-sm);
+}
+
+a:hover {
+  color: var(--primary-color);
+}
+
+img {
+  max-width: 100%;
+  display: inline-block;
+}
+
+ul {
+  list-style: none;
+}
+
+@media (width >= 1280px) {
+  :root {
+    --fs-lg: 1.5rem;
+    --fs-xl: 2.625rem;
+    --fs-2xl: 4rem;
+    --py-sm: 1rem;
+    --py-xl: 5rem;
+  }
+}

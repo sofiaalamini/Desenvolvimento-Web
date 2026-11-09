@@ -1,0 +1,101 @@
+.plans-grid {
+  display: grid;
+  gap: 2rem;
+  align-items: stretch;
+  width: min(100%, 24rem);
+  margin-inline: auto;
+}
+
+.plan-card {
+  position: relative;
+  background: #ffffff;
+  border: 0.1rem solid #ecdcc6;
+  border-radius: 1.5rem;
+  padding: 2rem 1.5rem;
+  display: grid;
+  align-content: start;
+  gap: 0.75rem;
+}
+
+/* o plano do meio é escuro, para se destacar dos outros */
+.plan-card.featured {
+  background: var(--secondary-color);
+  border-color: var(--secondary-color);
+  color: var(--light-text-color);
+  box-shadow: 0 1.5rem 3rem rgba(43, 27, 20, 0.3);
+}
+
+.plan-card.featured h3,
+.plan-card.featured .plan-price {
+  color: var(--light-text-color);
+}
+
+.plan-card.featured .plan-description,
+.plan-card.featured .plan-price span,
+.plan-card.featured ul {
+  color: #d9c7b3;
+}
+
+.plan-badge {
+  position: absolute;
+  top: -0.9rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--highlight-color);
+  color: var(--secondary-color);
+  font-size: 0.7rem;
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 1.25rem;
+  border-radius: 2rem;
+  white-space: nowrap;
+}
+
+.plan-card h3 {
+  font-size: var(--fs-lg);
+}
+
+.plan-description {
+  color: var(--second-text-color);
+  font-size: var(--fs-sm);
+}
+
+.plan-price {
+  font-family: var(--ff-title);
+  font-size: 2.25rem;
+  font-weight: var(--fw-bold);
+  line-height: 1.2;
+}
+
+.plan-price span {
+  font-family: var(--ff-sans);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-base);
+  color: var(--second-text-color);
+  margin-left: 0.25rem;
+}
+
+.plan-card hr {
+  border: none;
+  border-top: 0.1rem dashed #d9c3a5;
+  margin-block: 0.5rem;
+}
+
+.plan-card ul {
+  display: grid;
+  gap: 0.75rem;
+  font-size: var(--fs-sm);
+  color: var(--second-text-color);
+}
+
+.plan-card li span {
+  color: var(--primary-color);
+  font-weight: var(--fw-bold);
+  margin-right: 0.4rem;
+}
+
+@media (width >= 1280px) {
+  .plans-grid { grid-template-columns: repeat(3, 1fr); width: 100%; }
+  .plan-card.featured { transform: scale(1.05); }
+}

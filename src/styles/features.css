@@ -1,0 +1,84 @@
+/* título de seção: etiqueta pequena + título + parágrafo (usado em todas as seções) */
+.section-header {
+  text-align: center;
+  display: grid;
+  justify-items: center;
+  gap: 0.5rem;
+  padding-inline: 1.5rem;
+}
+
+.section-header > p:last-child {
+  color: var(--second-text-color);
+  max-width: 36rem;
+}
+
+.section-header strong {
+  color: var(--primary-color);
+}
+
+/* etiqueta em formato de pílula */
+.tag {
+  background: rgba(217, 88, 43, 0.12);
+  color: var(--primary-color);
+  font-weight: var(--fw-bold);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 0.25rem 0.9rem;
+  border-radius: 2rem;
+}
+
+#features,
+#plans {
+  padding-block: 5rem;
+  display: grid;
+  gap: 3rem;
+}
+
+/* os cards ganham número 01, 02, 03 sozinhos (contador do CSS) */
+.even-columns {
+  counter-reset: card;
+}
+
+.card {
+  counter-increment: card;
+  position: relative;
+  background: #ffffff;
+  border: 0.1rem solid #ecdcc6;
+  border-radius: 1.5rem;
+  padding: 2rem 1.5rem;
+  display: grid;
+  gap: 0.75rem;
+  justify-items: start;
+  text-align: left;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card::before {
+  content: "0" counter(card);
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+  font-family: var(--ff-title);
+  font-size: 2.5rem;
+  font-weight: var(--fw-bold);
+  color: var(--accent-soft);
+}
+
+.card:hover {
+  transform: translateY(-0.4rem);
+  box-shadow: 0 1rem 2rem rgba(43, 27, 20, 0.12);
+}
+
+.card img {
+  width: 3.5rem;
+  height: 3.5rem;
+  padding: 0.75rem;
+  background: rgba(217, 88, 43, 0.1);
+  border-radius: 1rem;
+}
+
+.card p {
+  color: var(--second-text-color);
+  font-size: var(--fs-sm);
+}

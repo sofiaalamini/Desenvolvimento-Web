@@ -1,0 +1,79 @@
+/* barra flutuante em formato de pílula, por cima do hero escuro */
+.site-header {
+  position: relative;
+  z-index: 10;
+  background: var(--bg-color);
+  border-radius: 3rem;
+  margin-top: 1rem;
+  padding-inline: 1.25rem;
+  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.25);
+}
+
+/* tudo lado a lado: logo | links | login + botão */
+.site-header nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* logo = ícone + nome em texto (assim nunca corta) */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  white-space: nowrap;
+}
+
+.logo span {
+  font-family: var(--ff-title);
+  font-size: 1.25rem;
+  font-weight: var(--fw-bold);
+  color: var(--text-color);
+}
+
+.nav-links,
+.header-actions {
+  display: none;
+  align-items: center;
+}
+
+.nav-links {
+  gap: 1.75rem;
+}
+
+.header-actions {
+  gap: 1.25rem;
+}
+
+.header-actions .btn-primary {
+  width: auto;
+  padding-block: 0.55rem;
+}
+
+.mobile-menu-content {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-color);
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+}
+
+.mobile-menu-content ul {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.mobile-menu-content a {
+  font-family: var(--ff-title);
+  font-size: var(--fs-xl);
+  color: var(--text-color);
+}
+
+/* a partir de 900px já cabe tudo na linha */
+@media (width >= 900px) {
+  .nav-links,
+  .header-actions { display: flex; }
+  .mobile-menu { display: none; }
+}

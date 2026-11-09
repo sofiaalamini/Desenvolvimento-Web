@@ -1,0 +1,33 @@
+.btn-primary,
+.btn-secondary {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-sm);
+  padding-block: 0.8rem;
+  padding-inline: 1.5rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  border: solid 0.15rem var(--primary-color);
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: var(--light-text-color);
+}
+
+.btn-primary:hover {
+  background: transparent;
+  color: var(--primary-color);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--primary-color);
+}
+
+.btn-secondary:hover {
+  background: var(--primary-color);
+  color: var(--light-text-color);
+}
