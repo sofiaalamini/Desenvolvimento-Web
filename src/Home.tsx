@@ -43,9 +43,8 @@ const plans = [
   { name: "Empresarial", description: "Café de qualidade para o seu escritório.", price: "R$ 149,90", unit: "/mês por escritório", buttonText: "Quero este", features: ["1kg de café por mês", "Moagem sob medida", "Atendimento prioritário"] },
 ];
 
-// o Web3Forms pega os campos do formulário e manda por e-mail para o dono da chave
-const FORM_URL = "https://api.web3forms.com/submit";
-const ACCESS_KEY = "01051b02-4601-4436-ba32-f4b372ce2bc2";
+// a Netlify Function (netlify/functions/send-email.ts) recebe os dados e envia o e-mail por SMTP
+const FORM_URL = "/api/send-email";
 
 export default function Home() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -65,14 +64,25 @@ export default function Home() {
     setFormStatus("enviando");
 
     try {
-      // manda os campos (email e motivo) para o serviço que recebe o formulário
+      const data = new FormData(form);
+
+      // campo-armadilha: se um robô marcou, finge que enviou e não manda nada
+      if (data.get("botcheck")) {
+        form.reset();
+        setFormStatus("enviado");
+        return;
+      }
+
+      // manda email e message em JSON para a function
       const response = await fetch(FORM_URL, {
         method: "POST",
-        headers: { Accept: "application/json" },
-        body: new FormData(form),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: data.get("email"), message: data.get("message") }),
       });
-      const result = await response.json();
-      if (!response.ok || !result.success) throw new Error("Falha ao enviar");
+      if (!response.ok) {
+        const body = await response.json().catch(() => ({}));
+        throw new Error(body.error ?? "Falha ao enviar");
+      }
       form.reset();
       setFormStatus("enviado");
     } catch {
@@ -191,10 +201,8 @@ export default function Home() {
           ) : (
             <form onSubmit={sendMessage}>
               <input name="email" type="email" placeholder="Seu melhor e-mail" aria-label="Seu melhor e-mail" required />
-              <input name="motivo" type="text" placeholder="Motivo do contato. Ex: Gostei muito do café X, poderia me enviar um orçamento?" aria-label="Motivo do contato" required />
-              {/* campos escondidos do Web3Forms: chave, assunto do e-mail e proteção contra robôs */}
-              <input type="hidden" name="access_key" value={ACCESS_KEY} />
-              <input type="hidden" name="subject" value="Nova mensagem do site Grão Dourado" />
+              <input name="message" type="text" placeholder="Motivo do contato. Ex: Gostei muito do café X, poderia me enviar um orçamento?" aria-label="Motivo do contato" required />
+              {/* campo escondido: proteção contra robôs */}
               <input type="checkbox" name="botcheck" className="honey" tabIndex={-1} autoComplete="off" aria-hidden="true" />
               <Button text={formStatus === "enviando" ? "Enviando..." : "Enviar"} submit disabled={formStatus === "enviando"} />
               {formStatus === "erro" && <p className="error" role="alert">Não deu para enviar agora. Tente de novo em instantes.</p>}
