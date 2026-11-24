@@ -1,5 +1,6 @@
 /* hero escuro: texto à esquerda, foto à direita */
 .hero-wrapper {
+  display: flow-root; /* impede a margem do header de vazar e abrir um vão claro no topo */
   background: var(--secondary-color);
   padding-bottom: 4rem;
   border-bottom-left-radius: 3rem;
